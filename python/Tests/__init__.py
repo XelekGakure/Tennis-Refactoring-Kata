@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-
-import unittest
-
-from tennis import TennisGame1, TennisGame2, TennisGame3
-
 test_cases = [
     (0, 0, "Love-All", 'player1', 'player2'),
     (1, 1, "Fifteen-All", 'player1', 'player2'),
@@ -48,40 +42,4 @@ test_cases = [
     (4, 6, 'Win for Two', 'player1', 'Two'),
     (6, 5, 'Advantage One', 'One', 'player2'),
     (5, 6, 'Advantage Two', 'player1', 'Two'),
-
 ]
-
-
-def play_game(tennis_game, p_one_points, p_two_points, p_one_name, p_two_name):
-    game = tennis_game(p_one_name, p_two_name)
-    for i in range(max(p_one_points, p_two_points)):
-        if i < p_one_points:
-            game.won_point(p_one_name)
-        if i < p_two_points:
-            game.won_point(p_two_name)
-    return game
-
-
-class TestTennis(unittest.TestCase):
-
-    def test_Score_Game1(self):
-        for testcase in test_cases:
-            (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(TennisGame1, p1Points, p2Points, p1Name, p2Name)
-            self.assertEqual(score, game.score())
-
-    def test_Score_Game2(self):
-        for testcase in test_cases:
-            (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(TennisGame2, p1Points, p2Points, p1Name, p2Name)
-            self.assertEqual(score, game.score())
-
-    def test_Score_Game3(self):
-        for testcase in test_cases:
-            (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(TennisGame3, p1Points, p2Points, p1Name, p2Name)
-            self.assertEqual(score, game.score())
-
-
-if __name__ == "__main__":
-    unittest.main()
